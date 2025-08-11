@@ -35,7 +35,7 @@ Common features implemented across services:
 
 This template demonstrates a simple microservice setup using NestJS with TCP transporter, plus an HTTP API gateway. The gateway handles incoming HTTP requests and forwards them over TCP to microservices (auth, user, product). RBAC is enforced using guards that check roles embedded in JWT claims.
 
-## 2 — Repo structure
+## Repo structure
 
 ```
 repo-root/
@@ -60,12 +60,12 @@ repo-root/
 
 Each service is a standalone NestJS app. Shared DTOs, interfaces, and constants can be placed in a `@nestjs/shared-lib` package.
 
-## 3 — Prerequisites
+## Prerequisites
 
 - Node.js v18+ (or compatible)
 - npm or yarn
 
-## 4 — Installation
+## Installation
 
 For each service folder:
 
@@ -86,7 +86,7 @@ cd ../shared-lib
 npm install
 ```
 
-## 5 — Environment variables (example)
+## Environment variables (example)
 
 Create a `.env` in each service with service-specific settings.
 
@@ -131,7 +131,7 @@ DB_NAME=
 
 > Use strong secrets in production and store them in a secrets manager.
 
-## 6 — Running the services (local)
+## Running the services (local)
 
 You can start services individually or run all at once.
 
@@ -139,16 +139,16 @@ You can start services individually or run all at once.
 
 ```bash
 # auth-service
-cd auth-service && npm run start:dev -- --port=4001
+cd auth-service && npm run start:dev
 
 # user-service
-cd user-service && npm run start:dev -- --port=4002
+cd user-service && npm run start:dev
 
 # product-service
-cd product-service && npm run start:dev -- --port=4003
+cd product-service && npm run start:dev
 
 # api-gateway
-cd api-gateway && npm run start:dev -- --port=3000
+cd api-gateway && npm run start:dev
 ```
 
 **Option 2: Start all services concurrently from root**
@@ -159,7 +159,7 @@ npm run start:all
 
 Each microservice should create a TCP listener using the NestJS `MicroserviceOptions` with `Transport.TCP`.
 
-## 7 — Notes & best practices
+## Notes & best practices
 
 - **Shared contracts:** Keep DTOs and message patterns in a shared library to avoid mismatch across services.
 - **Timeouts & retries:** Use timeouts for client calls and handle retries/backoff when appropriate.
