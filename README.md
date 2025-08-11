@@ -1,41 +1,43 @@
 # NestJS Microservices (TCP)
 
-A documentation for a NestJS microservices architecture using the TCP transporter. The project contains the following services:
+A documentation for a **NestJS microservices architecture** using the **TCP transporter**. 
+The project contains the following services:
 
-- **api-gateway** — API gateway (HTTP) that routes requests to microservices
-- **auth-service** — Registration and Login
-- **user-service** — User management (CRUD)
-- **product-service** — Product management (CRUD)
-- **shared-lib** — Common implementation
+- **🛡️ api-gateway** — API gateway (HTTP) that routes requests to microservices
+- **🔑 auth-service** — Registration and Login
+- **👤 user-service** — User management (CRUD)
+- **📦 product-service** — Product management (CRUD)
+- **📚 shared-lib** — Common implementation
 
-Common features implemented across services:
-
-- JWT-based authentication
-- Guards (AuthGuard, RolesGuard)
-- Role-based access control (RBAC)
-- Global filters (exception filters) and interceptors (logging, transform)
-- Validation pipes and DTOs
-- TCP transporter for microservice communication
-
----
-
-## Table of contents
-
-- [Overview](#-overview)
-- [Repo structure](#-repo-structure)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Environment variables](#-environment-variables)
-- [Running the services](#-running-the-services)
-- [Notes & best practices](#-notes---best-practices)
+**Common features implemented across services:**
+- 🔐 JWT-based authentication  
+- 🛡️ Guards (AuthGuard, RolesGuard)  
+- 🏷️ Role-based access control (RBAC)  
+- ⚠️ Global filters (exception filters) & interceptors (logging, transform)  
+- 📝 Validation pipes & DTOs  
+- 📡 TCP transporter for microservice communication 
 
 ---
 
-## Overview
+## 📑 Table of Contents
+- [📌 Overview](#-overview)
+- [📂 Repo Structure](#-repo-structure)
+- [🛠 Prerequisites](#-prerequisites)
+- [📥 Installation](#-installation)
+- [⚙️ Environment Variables](#️-environment-variables)
+- [▶️ Running the Services](#️-running-the-services)
+- [💡 Notes & Best Practices](#-notes--best-practices)
+- [🔄 Example: Auth Login Flow](#-example-auth-login-flow-http--gateway--auth-service-over-tcp)
+
+
+
+---
+
+## 📌 Overview
 
 This template demonstrates a simple microservice setup using NestJS with TCP transporter, plus an HTTP API gateway. The gateway handles incoming HTTP requests and forwards them over TCP to microservices (auth, user, product). RBAC is enforced using guards that check roles embedded in JWT claims.
 
-## Repo structure
+## 📂 Repo Structure
 
 ```
 repo-root/
@@ -60,12 +62,12 @@ repo-root/
 
 Each service is a standalone NestJS app. Shared DTOs, interfaces, and constants can be placed in a `@nestjs/shared-lib` package.
 
-## Prerequisites
+## 🛠 Prerequisites
 
 - Node.js v18+ (or compatible)
 - npm or yarn
 
-## Installation
+## 📥 Installation
 
 For each service folder:
 
@@ -86,7 +88,7 @@ cd ../shared-lib
 npm install
 ```
 
-## Environment variables (example)
+## ⚙️ Environment Variables
 
 Create a `.env` in each service with service-specific settings.
 
@@ -131,7 +133,7 @@ DB_NAME=
 
 > Use strong secrets in production and store them in a secrets manager.
 
-## Running the services (local)
+## ▶️ Running the Services
 
 You can start services individually or run all at once.
 
@@ -159,7 +161,7 @@ npm run start:all
 
 Each microservice should create a TCP listener using the NestJS `MicroserviceOptions` with `Transport.TCP`.
 
-## Notes & best practices
+## 💡 Notes & Best Practices
 
 - **Shared contracts:** Keep DTOs and message patterns in a shared library to avoid mismatch across services.
 - **Timeouts & retries:** Use timeouts for client calls and handle retries/backoff when appropriate.
@@ -168,7 +170,8 @@ Each microservice should create a TCP listener using the NestJS `MicroserviceOpt
 
 ---
 
-### Example: Auth login flow (HTTP -> gateway -> auth service over TCP)
+## 🔄 Example: Auth Login Flow (HTTP → Gateway → Auth Service over TCP)
+
 
 1. Client POST `/auth/login` to gateway with `{ email, password }`.
 2. Gateway forwards to `authClient.send({ cmd: 'login' }, { email, password })`.
