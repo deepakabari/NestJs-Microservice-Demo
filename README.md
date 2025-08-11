@@ -21,13 +21,13 @@ Common features implemented across services:
 
 ## Table of contents
 
-- [Overview](#-Overview)
+- [Overview](#-overview)
 - [Repo structure](#-repo-structure)
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
 - [Environment variables](#-environment-variables)
 - [Running the services](#-running-the-services)
-- [Notes & best practices](#-notes-and-best-practices)
+- [Notes & best practices](#-notes---best-practices)
 
 ---
 
